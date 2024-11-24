@@ -1,24 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import RolePermission from "./keycloak/RolePermission";
+import { keycloak } from "./keycloak/Keycloak";
+import { get } from "./services/HttpService";
 
 function App() {
+  const getRequest = async () => {
+    get("https://jsonplaceholder.typicode.com/posts");
+  };
+  getRequest();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="App" style={{ display: "flex" }}>
+      <div
+        style={{
+          flexBasis: "250px",
+          height: "100vh",
+          background: "#1041a3",
+          paddingTop: "50px",
+          color: "#fff",
+        }}
+      >
+        <h2>Admission Plan</h2>
+        <RolePermission roles={["view-applications"]} showNotAllowed={false}>
+          <h2>TTQ</h2>
+        </RolePermission>
+        <h2
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: "70px",
+            cursor: "pointer",
+          }}
+          onClick={keycloak.logout}
         >
-          Learn React
-        </a>
-      </header>
+          Logout
+        </h2>
+      </div>
+      <h1 style={{ flexGrow: 1 }}>Welcome {keycloak?.tokenParsed?.name}</h1>
     </div>
   );
 }
