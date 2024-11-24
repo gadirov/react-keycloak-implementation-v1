@@ -9,7 +9,7 @@ export const keycloak = new Keycloak({
 const initKeycloak = (onAuthenticatedCallback: () => void) => {
   keycloak
     .init({
-      onLoad: "check-sso",
+      onLoad: "login-required",
       //   silentCheckSsoRedirectUri: `${window.location.origin}/silent-check-sso.html`,
       pkceMethod: "S256",
       redirectUri: "http://localhost:3000",
