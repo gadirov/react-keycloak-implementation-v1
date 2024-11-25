@@ -14,7 +14,7 @@ export const put = <T>(url: string, data: T, config?: AxiosRequestConfig) =>
 export const get = <T>(url: string, config?: AxiosRequestConfig) =>
   axiosInstance.get(url, config).then((res) => res.data as T);
 
-export const remove = (url: string) =>
+export const deleteRequest = (url: string) =>
   axiosInstance.delete(url).then((res) => res.data);
 
 axiosInstance.interceptors.request.use(
