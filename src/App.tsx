@@ -1,4 +1,3 @@
-import "./App.css";
 import RolePermission from "./keycloak/RolePermission";
 import { keycloak } from "./keycloak/Keycloak";
 import { get } from "./services/HttpService";
@@ -21,7 +20,7 @@ function App() {
         }}
       >
         <h2>Admission Plan</h2>
-        <RolePermission roles={["view-applications"]} showNotAllowed={false}>
+        <RolePermission roles={["view-applications"]}>
           <h2>TTQ</h2>
         </RolePermission>
         <h2

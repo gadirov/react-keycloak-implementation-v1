@@ -7,7 +7,7 @@ export const hasRole = (roles: string[]) => {
   // }
   const resourceRoles = keycloak?.tokenParsed?.resource_access;
   for (const resource in resourceRoles) {
-    const resourceRoleList = resourceRoles[resource].roles;
+    const resourceRoleList = resourceRoles[resource]?.roles;
     if (roles.some((role) => resourceRoleList.includes(role))) {
       return true;
     }

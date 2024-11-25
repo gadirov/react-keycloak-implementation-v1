@@ -1,7 +1,7 @@
 import Keycloak from "keycloak-js";
 
 export const keycloak = new Keycloak({
-  url: "http://localhost:4000/",
+  url: process.env.REACT_APP_KEYCLOAK_URL,
   realm: "naa-lms",
   clientId: "naa-lms",
 });
@@ -12,7 +12,7 @@ const initKeycloak = (onAuthenticatedCallback: () => void) => {
       onLoad: "login-required",
       //   silentCheckSsoRedirectUri: `${window.location.origin}/silent-check-sso.html`,
       pkceMethod: "S256",
-      redirectUri: "http://localhost:3000",
+      redirectUri: process.env.REACT_APP_KEYCLOAK_REDIRECT_URL,
     })
     .then(() => {
       onAuthenticatedCallback();
